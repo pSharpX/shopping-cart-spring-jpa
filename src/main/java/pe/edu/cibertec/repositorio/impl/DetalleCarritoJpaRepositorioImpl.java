@@ -7,10 +7,13 @@ package pe.edu.cibertec.repositorio.impl;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.dominio.DetalleCarrito;
 import pe.edu.cibertec.repositorio.DetalleCarritoRepositorio;
 
@@ -18,15 +21,13 @@ import pe.edu.cibertec.repositorio.DetalleCarritoRepositorio;
  *
  * @author Java-LM
  */
+@Repository
 public class DetalleCarritoJpaRepositorioImpl 
         implements DetalleCarritoRepositorio{
 
+    @PersistenceContext
     private EntityManager em;
 
-    public DetalleCarritoJpaRepositorioImpl setEntityManager(EntityManager em) {
-        this.em = em;
-        return this;
-    }
     @Override
     public DetalleCarrito buscar(Long id) {
         return this.em.find(DetalleCarrito.class, id);

@@ -6,11 +6,13 @@
 package pe.edu.cibertec.repositorio.impl;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.repositorio.UsuarioRepositorio;
 
@@ -18,15 +20,12 @@ import pe.edu.cibertec.repositorio.UsuarioRepositorio;
  *
  * @author Java-LM
  */
+@Repository
 public class UsuarioJpaRepositorioImpl
         implements UsuarioRepositorio {
-    
-    private EntityManager em;
 
-    public UsuarioJpaRepositorioImpl setEntityManager(EntityManager em) {
-        this.em = em;
-        return this;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public Usuario buscar(Long id) {

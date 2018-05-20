@@ -7,10 +7,13 @@ package pe.edu.cibertec.repositorio.impl;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.repositorio.ProductoRepositorio;
 
@@ -18,16 +21,14 @@ import pe.edu.cibertec.repositorio.ProductoRepositorio;
  *
  * @author Java-LM
  */
+@Repository
 public class ProductoJpaRepositorioImpl implements ProductoRepositorio {
-    
+
+    @PersistenceContext
     private EntityManager em;
+
     private static final String SELECT_PRODUCTOS = "SELECT p FROM Producto p";
-    
-    public ProductoJpaRepositorioImpl setEntityManager(EntityManager em){
-        this.em = em;
-        return this;
-    }
-    
+
     @Override
     public Producto buscar(Long id) {
         return this.em.find(Producto.class, id);

@@ -8,6 +8,12 @@ package pe.edu.cibertec.main;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+import pe.edu.cibertec.configuracion.TxManager;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.repositorio.CarritoCompraRepositorio;
@@ -23,10 +29,20 @@ import pe.edu.cibertec.repositorio.impl.UsuarioJpaRepositorioImpl;
  *
  * @author Java-LM
  */
+@ComponentScan("pe.edu.cibertec")
+@PropertySource("classpath:database.properties")
 public class Principal {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("labjpa");
+
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(Principal.class);
+
+		ProductoRepositorio productoRepositorio = ctx.getBean(ProductoJpaRepositorioImpl.class);
+		productoRepositorio.obtenerTodos().forEach(p -> {
+			System.out.printf("Producto: %s, Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
+		});
+
+		/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("labjpa");
 		EntityManager em = emf.createEntityManager();
 
 		em.getTransaction().begin();
@@ -75,6 +91,6 @@ public class Principal {
 		});
 		em.getTransaction().commit();
 		em.close();
-		emf.close();
+		emf.close();*/
 	}
 }
