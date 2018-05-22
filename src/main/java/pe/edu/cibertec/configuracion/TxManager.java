@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Created by CHRISTIAN on 19/05/2018.
@@ -24,6 +25,9 @@ public class TxManager {
 
     @Autowired
     private Environment env;
+
+    @Value("${database.driverClassName}")
+    private String driverClassName;
 
     @Bean
     public PlatformTransactionManager jpaTransactionManager(LocalContainerEntityManagerFactoryBean lcemfb){

@@ -33,64 +33,53 @@ import pe.edu.cibertec.repositorio.impl.UsuarioJpaRepositorioImpl;
 @PropertySource("classpath:database.properties")
 public class Principal {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(Principal.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(Principal.class);
 
-		ProductoRepositorio productoRepositorio = ctx.getBean(ProductoJpaRepositorioImpl.class);
-		productoRepositorio.obtenerTodos().forEach(p -> {
-			System.out.printf("Producto: %s, Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
-		});
+        ProductoRepositorio productoRepositorio = ctx.getBean(ProductoJpaRepositorioImpl.class);
+        productoRepositorio.obtenerTodos().forEach(p -> {
+            System.out.printf("Producto: %s, Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
+        });
+        
+        CategoriaRepositorio categoriaRepositorio = ctx.getBean(CategoriaJpaRepositorioImpl.class);
+        categoriaRepositorio.obtenerTodos().forEach(c -> {
+            System.out.printf("Categoria: %s\n", c.getNombre());
+        });
 
-		/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("labjpa");
-		EntityManager em = emf.createEntityManager();
+        UsuarioRepositorio usuarioRepositorio = ctx.getBean(UsuarioJpaRepositorioImpl.class);
+        Usuario usuario = usuarioRepositorio.buscar(1L);
 
-		em.getTransaction().begin();
+        if (usuario != null) {
+            System.out.printf("Usuario: %d %s %s %d\n", usuario.getId(), usuario.getNombre(), usuario.getApellido(),
+                    usuario.getEdad());
+        }
 
-		CategoriaRepositorio categoriaRepositorio = new CategoriaJpaRepositorioImpl().setEntityManager(em);
+        // Usuario nuevo = new Usuario();
+        // nuevo.setNombre("Carlos");
+        // nuevo.setApellido("Perez");
+        // usuarioRepositorio.crear(nuevo);        
+        productoRepositorio.obtenerTodos().forEach(p -> {
+            System.out.printf("Producto: %s, Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
+        });
+        Producto producto = productoRepositorio.buscar(1l);
 
-		categoriaRepositorio.obtenerTodos().forEach(c -> {
-			System.out.printf("Categoria: %s\n", c.getNombre());
-		});
+        if (producto != null) {
+            System.out.printf("Producto: %s - Categoria: %s\n", producto.getNombre(), producto.getCategoria().getNombre());
+        }
+        CarritoCompraRepositorio carritoRepositorio = ctx.getBean(CarritoCompraJpaRepositorioImpl.class);
+        carritoRepositorio.buscarPorUsuario(1L).forEach(c -> {
+            System.out.printf("Carrito: %d - Usuario: %s\n", c.getId(), c.getUsuario().getApellido());
+            System.out.println("----------------------------------------");
 
-		UsuarioRepositorio usuarioRepositorio = new UsuarioJpaRepositorioImpl().setEntityManager(em);
-		Usuario usuario = usuarioRepositorio.buscar(1L);
-
-		if (usuario != null) {
-			System.out.printf("Usuario: %d %s %s %d\n", usuario.getId(), usuario.getNombre(), usuario.getApellido(),
-					usuario.getEdad());
-		}
-
-		// Usuario nuevo = new Usuario();
-		// nuevo.setNombre("Carlos");
-		// nuevo.setApellido("Perez");
-		// usuarioRepositorio.crear(nuevo);
-		ProductoRepositorio productoRepositorio = new ProductoJpaRepositorioImpl().setEntityManager(em);
-		productoRepositorio.obtenerTodos().forEach(p -> {
-			System.out.printf("Producto: %s, Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
-		});
-		Producto producto = productoRepositorio.buscar(1l);
-		
-		if (producto != null) {
-		System.out.printf("Producto: %s - Categoria: %s\n", producto.getNombre(), producto.getCategoria().getNombre());
-		}
-		CarritoCompraRepositorio carritoRepositorio = new CarritoCompraJpaRepositorioImpl().setEntityManager(em);
-
-		carritoRepositorio.buscarPorUsuario(1L).forEach(c -> {
-			System.out.printf("Carrito: %d - Usuario: %s\n", c.getId(), c.getUsuario().getApellido());
-			System.out.println("----------------------------------------");
-
-			c.getDetalleCarrito().forEach(dc -> {
-				System.out.printf("Producto: %s - Categoria: %s - Cantidad: %d - Precio: %s\n",
-						dc.getProducto().getNombre(), dc.getProducto().getCategoria().getNombre(), dc.getCantidad(),
-						dc.getPrecioUnitario());
-			});
-		});
-		productoRepositorio.obtenerPorCategoriaCriteriaApi(1L).forEach(p -> {
-			System.out.printf("Producto: %s - Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
-		});
-		em.getTransaction().commit();
-		em.close();
-		emf.close();*/
-	}
+            c.getDetalleCarrito().forEach(dc -> {
+                System.out.printf("Producto: %s - Categoria: %s - Cantidad: %d - Precio: %s\n",
+                        dc.getProducto().getNombre(), dc.getProducto().getCategoria().getNombre(), dc.getCantidad(),
+                        dc.getPrecioUnitario());
+            });
+        });
+        productoRepositorio.obtenerPorCategoriaCriteriaApi(1L).forEach(p -> {
+            System.out.printf("Producto: %s - Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
+        });        
+    }
 }
