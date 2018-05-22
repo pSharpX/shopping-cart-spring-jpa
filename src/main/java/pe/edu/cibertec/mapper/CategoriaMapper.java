@@ -5,15 +5,14 @@
  */
 package pe.edu.cibertec.mapper;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import pe.edu.cibertec.dominio.Producto;
-import pe.edu.cibertec.dto.ProductoDto;
+import pe.edu.cibertec.dominio.Categoria;
+import pe.edu.cibertec.dto.CategoriaDto;
+
 
 /**
  *
  * @author Java-LM
  */
-public interface ProductoMapper extends MapperBase<Producto, ProductoDto> {
-        
+public interface CategoriaMapper extends MapperBase<Categoria, CategoriaDto> {
+    
 }

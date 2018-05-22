@@ -9,6 +9,6 @@ package pe.edu.cibertec.dto;
  *
  * @author Java-LM
  */
-public class UsuarioDto {
+public class UsuarioDto extends DtoBase{
     
 }

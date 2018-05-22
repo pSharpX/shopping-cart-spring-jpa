@@ -5,10 +5,55 @@
  */
 package pe.edu.cibertec.servicio.impl;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pe.edu.cibertec.dto.UsuarioDto;
+import pe.edu.cibertec.mapper.UsuarioMapper;
+import pe.edu.cibertec.repositorio.UsuarioRepositorio;
+import pe.edu.cibertec.servicio.UsuarioServicio;
+
 /**
  *
  * @author Java-LM
  */
-public class UsuarioServicioImpl {
+@Service
+@Transactional
+public class UsuarioServicioImpl implements UsuarioServicio {
     
+    @Autowired
+    private UsuarioRepositorio usuarioRepositorio;    
+    @Autowired
+    private UsuarioMapper usuarioMapper;
+
+    @Override
+    public UsuarioDto buscar(String username, String contraseña) {
+        return usuarioMapper.map(usuarioRepositorio.buscar(username, contraseña));
+    }
+
+    @Override
+    public UsuarioDto buscar(Long id) {
+        return usuarioMapper.map(usuarioRepositorio.buscar(id));
+    }
+
+    @Override
+    public List<UsuarioDto> obtenerTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void crear(UsuarioDto object) {
+        usuarioRepositorio.crear(usuarioMapper.map(object));
+    }
+
+    @Override
+    public void actualizar(UsuarioDto object) {
+        usuarioRepositorio.actualizar(usuarioMapper.map(object));
+    }
+
+    @Override
+    public void eliminar(UsuarioDto object) {
+        usuarioRepositorio.eliminar(usuarioMapper.map(object));
+    }
 }

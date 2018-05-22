@@ -17,8 +17,8 @@ import pe.edu.cibertec.dto.DtoBase;
  * @param <Y>
  */
 public interface MapperBase<X extends EntidadBase, Y extends DtoBase> {
-    Y map(X producto);
-    X map(Y producto);
+    Y map(X object);
+    X map(Y object);
 
     /*default List<X> mapToListOf(List<Y> collections){
         return collections.stream().map(this::map).collect(Collectors.toList());

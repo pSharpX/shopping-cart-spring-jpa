@@ -5,10 +5,15 @@
  */
 package pe.edu.cibertec.servicio;
 
+import pe.edu.cibertec.dto.UsuarioDto;
+
 /**
  *
  * @author Java-LM
  */
-public interface UsuarioServicio {
-    
+public interface UsuarioServicio extends ServicioBase<UsuarioDto> {    
+    UsuarioDto buscar(String username, String contraseña);
+    default boolean existe(String username, String contraseña){
+        return (buscar(username, contraseña) != null);
+    }
 }

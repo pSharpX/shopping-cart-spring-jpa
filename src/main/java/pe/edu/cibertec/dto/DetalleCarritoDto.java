@@ -9,6 +9,6 @@ package pe.edu.cibertec.dto;
  *
  * @author Java-LM
  */
-public class CategoriaDto extends DtoBase {
+public class DetalleCarritoDto extends DtoBase{
     
 }

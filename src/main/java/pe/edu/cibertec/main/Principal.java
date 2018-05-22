@@ -5,15 +5,10 @@
  */
 package pe.edu.cibertec.main;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
-import pe.edu.cibertec.configuracion.TxManager;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.repositorio.CarritoCompraRepositorio;
@@ -72,11 +67,11 @@ public class Principal {
             System.out.printf("Carrito: %d - Usuario: %s\n", c.getId(), c.getUsuario().getApellido());
             System.out.println("----------------------------------------");
 
-            c.getDetalleCarrito().forEach(dc -> {
+            /*c.getDetalleCarrito().forEach(dc -> {
                 System.out.printf("Producto: %s - Categoria: %s - Cantidad: %d - Precio: %s\n",
                         dc.getProducto().getNombre(), dc.getProducto().getCategoria().getNombre(), dc.getCantidad(),
                         dc.getPrecioUnitario());
-            });
+            });*/
         });
         productoRepositorio.obtenerPorCategoriaCriteriaApi(1L).forEach(p -> {
             System.out.printf("Producto: %s - Categoria: %s\n", p.getNombre(), p.getCategoria().getNombre());
