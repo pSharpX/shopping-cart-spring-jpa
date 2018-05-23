@@ -39,7 +39,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public List<UsuarioDto> obtenerTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return usuarioMapper.mapToListOf(usuarioRepositorio.obtenerTodos());
     }
 
     @Override

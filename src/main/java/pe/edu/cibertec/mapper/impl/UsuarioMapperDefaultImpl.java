@@ -19,11 +19,22 @@ public class UsuarioMapperDefaultImpl implements UsuarioMapper{
 
     @Override
     public UsuarioDto map(Usuario object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UsuarioDto usuarioDto = new UsuarioDto();
+        usuarioDto.setId(object.getId());
+        usuarioDto.setNombre(object.getNombre());
+        usuarioDto.setApellido(object.getApellido());
+        usuarioDto.setFechaNacimiento(object.getFechaNacimiento());
+        usuarioDto.setEdad(object.getEdad());
+        return usuarioDto;
     }
 
     @Override
     public Usuario map(UsuarioDto object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Usuario usuario = new Usuario();
+        usuario.setId(object.getId());
+        usuario.setNombre(object.getNombre());
+        usuario.setApellido(object.getApellido());
+        usuario.setFechaNacimiento(object.getFechaNacimiento());
+        return usuario;
     }    
 }

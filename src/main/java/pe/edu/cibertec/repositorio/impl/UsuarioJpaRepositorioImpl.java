@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.repositorio.UsuarioRepositorio;
 
+import java.util.List;
+
 /**
  *
  * @author Java-LM
@@ -30,6 +32,11 @@ public class UsuarioJpaRepositorioImpl
     @Override
     public Usuario buscar(Long id) {
         return this.em.find(Usuario.class, id);
+    }
+
+    @Override
+    public List<Usuario> obtenerTodos() {
+        return null;
     }
 
     @Override

@@ -5,10 +5,12 @@
  */
 package pe.edu.cibertec.mapper.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pe.edu.cibertec.dominio.CarritoCompra;
 import pe.edu.cibertec.dto.CarritoCompraDto;
 import pe.edu.cibertec.mapper.CarritoCompraMapper;
+import pe.edu.cibertec.mapper.DetalleCarritoMapper;
 
 /**
  *
@@ -17,14 +19,27 @@ import pe.edu.cibertec.mapper.CarritoCompraMapper;
 @Component
 public class CarritoCompraMapperDefaultImpl  implements CarritoCompraMapper{
 
+    @Autowired
+    private DetalleCarritoMapper detalleCarritoMapper;
+
     @Override
     public CarritoCompraDto map(CarritoCompra object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CarritoCompraDto carritoCompraDto = new CarritoCompraDto();
+        carritoCompraDto.setId(object.getId());
+        carritoCompraDto.setFechaCreacion(object.getFechaCreacion());
+        carritoCompraDto.setFechaCompra(object.getFechaCompra());
+        carritoCompraDto.setActivo(object.isActivo());
+        carritoCompraDto.setDireccionEnvio(object.getDireccionEnvio());
+        carritoCompraDto.setTotal(object.getTotal().doubleValue());
+        carritoCompraDto.setUsuario(object.getUsuario().getNombre());
+        carritoCompraDto.setDetalleCarrito(detalleCarritoMapper.mapToListOf(object.getDetalleCarrito()));
+        return carritoCompraDto;
     }
 
     @Override
     public CarritoCompra map(CarritoCompraDto object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CarritoCompra carritoCompra = new CarritoCompra();
+        return carritoCompra;
     }
     
 }

@@ -34,6 +34,11 @@ public class DetalleCarritoJpaRepositorioImpl
     }
 
     @Override
+    public List<DetalleCarrito> obtenerTodos() {
+        return null;
+    }
+
+    @Override
     public List<DetalleCarrito> buscarPorProducto(Long idProducto) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<DetalleCarrito> cq = cb.createQuery(DetalleCarrito.class);

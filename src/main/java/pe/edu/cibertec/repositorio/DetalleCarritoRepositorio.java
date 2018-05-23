@@ -12,11 +12,7 @@ import pe.edu.cibertec.dominio.DetalleCarrito;
  *
  * @author Java-LM
  */
-public interface DetalleCarritoRepositorio {
-    DetalleCarrito buscar(Long id);
+public interface DetalleCarritoRepositorio extends RepositorioBase<DetalleCarrito> {
     List<DetalleCarrito> buscarPorProducto(Long idProducto);
     List<DetalleCarrito> buscarPorCarrito(Long idCarrito);
-    void crear(DetalleCarrito detalle);
-    void actualizar(DetalleCarrito detalle);
-    void eliminar(DetalleCarrito detalle);
 }

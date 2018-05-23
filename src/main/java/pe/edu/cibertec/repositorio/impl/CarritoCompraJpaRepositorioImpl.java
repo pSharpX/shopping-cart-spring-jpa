@@ -34,4 +34,29 @@ public class CarritoCompraJpaRepositorioImpl implements CarritoCompraRepositorio
                 .setParameter("idUsuario", idUsuario);
         return query.getResultList();
     }
+
+    @Override
+    public CarritoCompra buscar(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<CarritoCompra> obtenerTodos() {
+        return null;
+    }
+
+    @Override
+    public void crear(CarritoCompra object) {
+
+    }
+
+    @Override
+    public void actualizar(CarritoCompra object) {
+
+    }
+
+    @Override
+    public void eliminar(CarritoCompra object) {
+
+    }
 }

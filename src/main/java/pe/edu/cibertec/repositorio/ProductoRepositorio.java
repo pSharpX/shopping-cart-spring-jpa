@@ -13,12 +13,7 @@ import pe.edu.cibertec.dominio.Producto;
  *
  * @author Java-LM
  */
-public interface ProductoRepositorio {
-    Producto buscar(Long id);
-    List<Producto> obtenerTodos();
+public interface ProductoRepositorio extends RepositorioBase<Producto>{
     List<Producto> obtenerPorCategoria(Long idCategoria);
     List<Producto> obtenerPorCategoriaCriteriaApi(Long idCategoria);
-    void crear(Producto producto);
-    void actualizar(Producto producto);
-    void eliminar(Producto producto);
 }

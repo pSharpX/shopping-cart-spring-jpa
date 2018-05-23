@@ -8,8 +8,12 @@ package pe.edu.cibertec.servicio.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pe.edu.cibertec.dto.DetalleCarritoDto;
 import pe.edu.cibertec.mapper.DetalleCarritoMapper;
 import pe.edu.cibertec.repositorio.DetalleCarritoRepositorio;
+import pe.edu.cibertec.servicio.DetalleCarritoServicio;
+
+import java.util.List;
 
 /**
  *
@@ -17,11 +21,45 @@ import pe.edu.cibertec.repositorio.DetalleCarritoRepositorio;
  */
 @Service
 @Transactional
-public class DetalleCarritoServicioImpl {
-    
+public class DetalleCarritoServicioImpl implements DetalleCarritoServicio {
+
     @Autowired
-    private DetalleCarritoRepositorio detalleCarritoRepositorio;    
+    private DetalleCarritoRepositorio detalleCarritoRepositorio;
     @Autowired
     private DetalleCarritoMapper detalleCarritoMapper;
-    
+
+    @Override
+    public DetalleCarritoDto buscar(Long id) {
+        return detalleCarritoMapper.map(detalleCarritoRepositorio.buscar(id));
+    }
+
+    @Override
+    public List<DetalleCarritoDto> obtenerTodos() {
+        return detalleCarritoMapper.mapToListOf(detalleCarritoRepositorio.obtenerTodos());
+    }
+
+    @Override
+    public void crear(DetalleCarritoDto object) {
+        detalleCarritoRepositorio.crear(detalleCarritoMapper.map(object));
+    }
+
+    @Override
+    public void actualizar(DetalleCarritoDto object) {
+        detalleCarritoRepositorio.actualizar(detalleCarritoMapper.map(object));
+    }
+
+    @Override
+    public List<DetalleCarritoDto> buscarPorProducto(Long idProducto) {
+        return detalleCarritoMapper.mapToListOf(detalleCarritoRepositorio.buscarPorProducto(idProducto));
+    }
+
+    @Override
+    public void eliminar(DetalleCarritoDto object) {
+        detalleCarritoRepositorio.eliminar(detalleCarritoMapper.map(object));
+    }
+
+    @Override
+    public List<DetalleCarritoDto> buscarPorCarrito(Long idCarrito) {
+        return detalleCarritoMapper.mapToListOf(detalleCarritoRepositorio.buscarPorCarrito(idCarrito));
+    }
 }

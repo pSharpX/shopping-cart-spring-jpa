@@ -11,13 +11,6 @@ import pe.edu.cibertec.dominio.Usuario;
  *
  * @author Java-LM
  */
-public interface UsuarioRepositorio {
-    Usuario buscar(Long id);
+public interface UsuarioRepositorio extends RepositorioBase<Usuario> {
     Usuario buscar(String username, String contraseña);
-    void crear(Usuario usuario);
-    void actualizar(Usuario usuario);
-    void eliminar(Usuario usuario);
-    default void eliminar(Long id){
-        eliminar(buscar(id));
-    }
 }

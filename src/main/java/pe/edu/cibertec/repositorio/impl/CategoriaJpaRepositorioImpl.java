@@ -31,4 +31,18 @@ public class CategoriaJpaRepositorioImpl implements CategoriaRepositorio {
         return query.getResultList();
 	}
 
+	@Override
+	public void crear(Categoria object) {
+
+	}
+
+	@Override
+	public void actualizar(Categoria object) {
+
+	}
+
+	@Override
+	public void eliminar(Categoria object) {
+
+	}
 }

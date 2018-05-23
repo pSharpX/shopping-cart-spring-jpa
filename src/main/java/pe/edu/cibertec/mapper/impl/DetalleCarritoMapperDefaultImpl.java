@@ -10,6 +10,8 @@ import pe.edu.cibertec.dominio.DetalleCarrito;
 import pe.edu.cibertec.dto.DetalleCarritoDto;
 import pe.edu.cibertec.mapper.DetalleCarritoMapper;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Java-LM
@@ -19,12 +21,23 @@ public class DetalleCarritoMapperDefaultImpl  implements DetalleCarritoMapper {
 
     @Override
     public DetalleCarritoDto map(DetalleCarrito object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DetalleCarritoDto detalleCarritoDto = new DetalleCarritoDto();
+        detalleCarritoDto.setId(object.getId());
+        detalleCarritoDto.setProductoId(object.getProducto().getId());
+        detalleCarritoDto.setProducto(object.getProducto().getNombre());
+        detalleCarritoDto.setCategoria(object.getProducto().getCategoria().getNombre());
+        detalleCarritoDto.setCantidad(object.getCantidad());
+        detalleCarritoDto.setPrecioUnitario(object.getPrecioUnitario().doubleValue());
+        return detalleCarritoDto;
     }
 
     @Override
     public DetalleCarrito map(DetalleCarritoDto object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DetalleCarrito detalleCarrito = new DetalleCarrito();
+        detalleCarrito.setId(object.getId());
+        detalleCarrito.setCantidad(object.getCantidad());
+        detalleCarrito.setPrecioUnitario(new BigDecimal(object.getPrecioUnitario()));
+        return detalleCarrito;
     }
     
 }

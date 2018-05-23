@@ -12,7 +12,6 @@ import pe.edu.cibertec.dominio.CarritoCompra;
  *
  * @author Java-LM
  */
-public interface CarritoCompraRepositorio {
-    
+public interface CarritoCompraRepositorio extends RepositorioBase<CarritoCompra> {
     List<CarritoCompra> buscarPorUsuario(Long idUsuario);
 }

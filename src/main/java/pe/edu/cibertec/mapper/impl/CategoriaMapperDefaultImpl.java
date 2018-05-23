@@ -19,12 +19,18 @@ public class CategoriaMapperDefaultImpl implements CategoriaMapper {
 
     @Override
     public CategoriaDto map(Categoria object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaDto categoriaDto = new CategoriaDto();
+        categoriaDto.setId(object.getId());
+        categoriaDto.setNombre(object.getNombre());
+        return categoriaDto;
     }
 
     @Override
     public Categoria map(CategoriaDto object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Categoria categoria = new Categoria();
+        categoria.setId(object.getId());
+        categoria.setNombre(object.getNombre());
+        return categoria;
     }
     
 }

@@ -5,10 +5,12 @@
  */
 package pe.edu.cibertec.servicio;
 
+import pe.edu.cibertec.dto.CategoriaDto;
+
 /**
  *
  * @author Java-LM
  */
-public interface CategoriaServicio {
+public interface CategoriaServicio extends ServicioBase<CategoriaDto> {
     
 }
