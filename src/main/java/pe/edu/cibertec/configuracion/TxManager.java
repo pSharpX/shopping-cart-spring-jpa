@@ -15,12 +15,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * Created by CHRISTIAN on 19/05/2018.
  */
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:database.properties")
 public class TxManager {
 
     @Autowired

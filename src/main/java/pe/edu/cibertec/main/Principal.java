@@ -7,8 +7,7 @@ package pe.edu.cibertec.main;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
+import pe.edu.cibertec.configuracion.AppConfig;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.repositorio.CarritoCompraRepositorio;
@@ -24,13 +23,11 @@ import pe.edu.cibertec.repositorio.impl.UsuarioJpaRepositorioImpl;
  *
  * @author Java-LM
  */
-@ComponentScan("pe.edu.cibertec")
-@PropertySource("classpath:database.properties")
 public class Principal {
 
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(Principal.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 
         ProductoRepositorio productoRepositorio = ctx.getBean(ProductoJpaRepositorioImpl.class);
         productoRepositorio.obtenerTodos().forEach(p -> {

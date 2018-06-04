@@ -10,7 +10,7 @@ import org.springframework.core.io.Resource;
  * Created by CHRISTIAN on 20/05/2018.
  */
 @Configuration
-public class ConfigurationProperties {
+public class PropertiesConfig {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer properties(){
